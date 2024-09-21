@@ -5,7 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сайт репетитора</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <style>
+
+            body, html {
+                font-family: 'Play', sans-serif
+            }
+            body {
+                background: linear-gradient(45deg, #f88084, #fd9477, #f2704c, #f567cd, #9972f4, #ec53c1, #ff9a9e);
+                background-size: 400% 400%;
+                animation: gradientAnimation 15s ease infinite;
+            }
+            @keyframes gradientAnimation {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+        </style>
+
+    </head>
 <body>
 
     <div class="section container">
@@ -18,7 +38,6 @@
             <p>Люблю свою работу и стараюсь делать её наилучшим образом.</p>
         </div>
     </div>
-
     <div class="carousel carousel-awards">
         <button class="carousel-button left">❮</button>
         <div class="carousel-track">

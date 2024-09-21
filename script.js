@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const createCarousel = (carouselClass, imagesToShow) => {
         const track = document.querySelector(`.${carouselClass} .carousel-track`);
         const slides = Array.from(track.children);
@@ -7,55 +7,60 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const slideWidth = slides[0].getBoundingClientRect().width;
 
-        // Расставляем слайды по горизонтали
-        slides.forEach((slide, index) => {
+        // Клонируем первый и последний слайды для непрерывной карусели
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
+
+        track.appendChild(firstClone); // Добавляем клон первого слайда в конец
+        track.insertBefore(lastClone, slides[0]); // Добавляем клон последнего слайда в начало
+
+        const allSlides = Array.from(track.children); // Теперь включаем клоны в список всех слайдов
+
+        // Расставляем слайды по горизонтали с учётом клонов
+        allSlides.forEach((slide, index) => {
             slide.style.left = slideWidth * index + 'px';
         });
 
-        let currentSlide = 0;
+        let currentSlide = 1; // Старт с первого слайда (не с клона)
+        track.style.transform = `translateX(-${slideWidth * currentSlide}px)`; // Смещаем трек к первому реальному слайду
 
-        const moveToSlide = (track, currentSlide, targetSlide) => {
-            const amountToMove = targetSlide.style.left;
-            track.style.transform = 'translateX(-' + amountToMove + ')';
-            currentSlide = targetSlide;
+        const moveToSlide = (targetSlideIndex) => {
+            track.style.transform = 'translateX(-' + slideWidth * targetSlideIndex + 'px)';
+            currentSlide = targetSlideIndex;
         };
 
         nextButton.addEventListener('click', () => {
-            const currentSlideElement = slides[currentSlide];
-            const nextSlide = currentSlideElement.nextElementSibling || slides[0]; // Зацикливаем
-            moveToSlide(track, currentSlide, nextSlide);
-            currentSlide = (currentSlide + 1) % slides.length;
+            if (currentSlide >= allSlides.length - imagesToShow) return; // Предотвращаем переход дальше клонированных слайдов
 
-            // Условие для возврата в начало после показа 3 и 4
-            if (currentSlide >= slides.length - imagesToShow) {
-                currentSlide = 0; // Возврат в начало
-                track.style.transition = 'none'; // Убираем анимацию
-                track.style.transform = 'translateX(0)'; // Перемещаем в начало
+            moveToSlide(currentSlide + 1);
+
+            // Если мы на клонированном первом слайде (в конце трека), мгновенно переносим к настоящему первому слайду
+            if (currentSlide === allSlides.length - imagesToShow) {
                 setTimeout(() => {
-                    track.style.transition = 'transform 0.5s ease'; // Восстанавливаем анимацию
-                }, 50);
+                    track.style.transition = 'none'; // Отключаем анимацию
+                    moveToSlide(1); // Возвращаем к первому реальному слайду
+                    setTimeout(() => track.style.transition = 'transform 0.5s ease'); // Восстанавливаем анимацию
+                }, 500); // Задержка соответствует длительности анимации
             }
         });
 
         prevButton.addEventListener('click', () => {
-            const currentSlideElement = slides[currentSlide];
-            const prevSlide = currentSlideElement.previousElementSibling || slides[slides.length - 1]; // Зацикливаем
-            moveToSlide(track, currentSlide, prevSlide);
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            if (currentSlide <= 0) return; // Предотвращаем переход дальше клонированных слайдов
 
-            // Условие для возврата в начало
-            if (currentSlide < 0) {
-                currentSlide = slides.length - imagesToShow; // Показать последние 2-3
-                track.style.transition = 'none'; // Убираем анимацию
-                track.style.transform = `translateX(-${(currentSlide * slideWidth)}px)`; // Перемещаем к последним
+            moveToSlide(currentSlide - 1);
+
+            // Если мы на клонированном последнем слайде (в начале трека), мгновенно переносим к настоящему последнему слайду
+            if (currentSlide === 0) {
                 setTimeout(() => {
-                    track.style.transition = 'transform 0.5s ease'; // Восстанавливаем анимацию
-                }, 50);
+                    track.style.transition = 'none'; // Отключаем анимацию
+                    moveToSlide(allSlides.length - imagesToShow - 1); // Возвращаем к последнему реальному слайду
+                    setTimeout(() => track.style.transition = 'transform 0.5s ease'); // Восстанавливаем анимацию
+                }, 500); // Задержка соответствует длительности анимации
             }
         });
     };
 
     // Инициализация каруселей
-    createCarousel('carousel-awards', 1); // 2 - количество показанных изображений в карусели наград
-    createCarousel('carousel-students', 1); // 2 - количество показанных изображений в карусели учеников
+    createCarousel('carousel-awards', 1); // 1 - количество показанных изображений в карусели наград
+    createCarousel('carousel-students', 1); // 1 - количество показанных изображений в карусели учеников
 });

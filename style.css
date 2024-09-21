@@ -1,9 +1,9 @@
 /* Основные стили для body */
+
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #282828; /* Основной цвет */
-    color: white;
+    background-color: #27272A ; /* Новый цвет фона */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -13,23 +13,22 @@ body {
 
 /* Основной стиль для заголовков */
 h2 {
-    color: #3500D3; /* Новый цвет заголовка */
+    color: #f0f0f0; /* Новый цвет заголовка */
     text-align: center;
     margin-bottom: 20px;
 }
 
 /* Стиль для секций */
-.section {
+.section, .why-me {
     padding: 50px 20px;
-    border: 5px solid rgba(255, 255, 255, 0.1);
+    border: 10px solid rgba(255, 255, 255, 0.1);
     margin: 30px; /* Увеличенное расстояние между блоками */
-    width: 50%;
-    max-width: 800px;
-    min-width: 400px;
+    width: 100%; /* Единая ширина для всех блоков */
+    max-width: 800px; /* Максимальная ширина */
     box-sizing: border-box;
     text-align: center;
-    background-color: #282828; /* Основной цвет для секций */
-    border-radius: 10px; /* Закругленные углы */
+    background-color: rgba(255, 255, 255, 0.584);
+    border-radius: 20px; /* Закругленные углы */
 }
 
 /* Контейнер для секции "Обо мне" */
@@ -49,15 +48,17 @@ h2 {
 
 .info {
     max-width: 600px;
+    font-weight: 500;
 }
 
 /* Стили для карусели */
 .carousel {
     position: relative;
     overflow: hidden;
-    width: 100%;
-    max-width: 600px; /* Центрирование и ограничение ширины карусели */
+    width: 100%; /* Центрирование и ограничение ширины карусели */
+    max-width: 800px; /* Единая ширина для карусели */
     margin: 0 auto; /* Центрирование карусели */
+    border-radius: 20px; /* Закругленные углы */
 }
 
 .carousel-track {
@@ -78,7 +79,7 @@ h2 {
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
-    color: white;
+    color: #f0f0f0;
     font-size: 30px;
     padding: 10px;
     cursor: pointer;
@@ -95,18 +96,15 @@ h2 {
 
 /* Стили для блока "Почему я" */
 .why-me {
-    max-width: 600px; /* Максимальная ширина блока */
-    margin: 30px auto; /* Увеличенное расстояние между блоками */
     padding: 20px;
-    border: 5px solid rgba(255, 255, 255, 0.1); /* Едва заметная обводка */
-    text-align: center;
-    background-color: #282828; /* Новый цвет фона */
-    border-radius: 10px; /* Закругленные углы */
+
+    background-color: rgba(255, 255, 255, 0.584);
+    border-radius: 20px; /* Закругленные углы */
 }
 
 .why-me h2 {
     text-align: center;
-    color: #eeeeee; /* Новый цвет заголовка */
+    color: #f0f0f0; /* Новый цвет заголовка */
 }
 
 .why-me-list {
@@ -119,7 +117,7 @@ h2 {
 }
 
 .why-me-item {
-    background-color: #282828; /* Новый цвет для пунктов */
+    background-color: #f0f0f0;
     padding: 15px;
     border-radius: 10px; /* Закругленные углы для пунктов */
     text-align: center;
@@ -128,13 +126,14 @@ h2 {
 /* Стили для контактов */
 #contact p {
     text-align: center;
-    font-size: 18px;
+    font-size: 23px;
+    font-weight: 400;
 }
 
 /* Адаптация для мобильных устройств */
 @media (max-width: 900px) {
-    .section {
-        width: 90%;
+    .section, .why-me {
+        width: 90%; /* Ширина для мобильных устройств */
         margin: 10px auto;
     }
 
