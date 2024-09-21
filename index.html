@@ -1,75 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>виноград</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        body {
-            background: linear-gradient(45deg, #f88084, #fd9477, #f2704c, #f567cd, #9972f4, #ec53c1, #ff9a9e);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Стиль для стрелки */
-        .arrow {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: transparent;
-            border-left: 5px solid white;
-            border-bottom: 5px solid white;
-            transform: rotate(45deg);
-            transition: transform 0.1s ease;
-        }
-    </style>
+    <title>Сайт репетитора</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Стрелка в центре -->
-    <div class="arrow" id="arrow"></div>
 
-    <script>
-        const arrow = document.getElementById('arrow');
+    <div class="section container">
+        <img class="photo" src="images/me.png" alt="Моя фотография">
+        <div class="info">
+            <h2>Обо мне</h2>
+            <p>Я опытный репетитор, готовящий детей к экзаменам.</p>
+            <p>У меня есть множество успешных выпускников.</p>
+            <p>Использую современные методы обучения.</p>
+            <p>Люблю свою работу и стараюсь делать её наилучшим образом.</p>
+        </div>
+    </div>
 
-        // Центр экрана
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
+    <div class="carousel carousel-awards">
+        <button class="carousel-button left">❮</button>
+        <div class="carousel-track">
+            <img src="images/awards/1.png" alt="Награда 1">
+            <img src="images/awards/2.png" alt="Награда 2">
+            <img src="images/awards/3.png" alt="Награда 3">
+            <img src="images/awards/4.png" alt="Награда 4">
+        </div>
+        <button class="carousel-button right">❯</button>
+    </div>
 
-        // Позиционируем стрелку в центре
-        arrow.style.left = centerX - 15 + 'px'; // 15px это половина ширины стрелки
-        arrow.style.top = centerY - 15 + 'px';  // 15px это половина высоты стрелки
+    <div class="section why-me">
+        <h2>Почему я</h2>
+        <ul class="why-me-list">
+            <li class="why-me-item">Индивидуальный подход к каждому ученику</li>
+            <li class="why-me-item">Подготовка к экзаменам всех уровней</li>
+            <li class="why-me-item">Опыт работы более 10 лет</li>
+            <li class="why-me-item">Множество успешных выпускников</li>
+            <li class="why-me-item">Программа занятий под любые цели</li>
+            <li class="why-me-item">Современные методы преподавания</li>
+        </ul>
+    </div>
 
-        // Функция для вычисления угла между курсором и центром
-        document.addEventListener('mousemove', function(e) {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
+    <div class="carousel carousel-students">
+        <button class="carousel-button left">❮</button>
+        <div class="carousel-track">
+            <img src="images/pupils/1.png" alt="Ученик 1">
+            <img src="images/pupils/2.png" alt="Ученик 2">
+            <img src="images/pupils/3.png" alt="Ученик 3">
+            <img src="images/pupils/4.png" alt="Ученик 4">
+        </div>
+        <button class="carousel-button right">❯</button>
+    </div>
 
-            // Вычисляем разницу по осям
-            const deltaX = mouseX - centerX;
-            const deltaY = mouseY - centerY;
+    <div class="section" id="contact">
+        <h2>Связаться со мной</h2>
+        <p>Телефон: +7 (999) 999-99-99</p>
+        <p>Telegram: @yourtelegram</p>
+        <p>HH.ru: link</p>
+    </div>
 
-            // Вычисляем угол в радианах и переводим его в градусы
-            const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-
-            // Поворачиваем стрелку
-            arrow.style.transform = `rotate(${angle + 180+45}deg)`; // +45, чтобы учесть начальное вращение стрелки
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

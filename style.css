@@ -1,0 +1,153 @@
+/* Основные стили для body */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #282828; /* Основной цвет */
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Основной стиль для заголовков */
+h2 {
+    color: #3500D3; /* Новый цвет заголовка */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Стиль для секций */
+.section {
+    padding: 50px 20px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    margin: 30px; /* Увеличенное расстояние между блоками */
+    width: 50%;
+    max-width: 800px;
+    min-width: 400px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #282828; /* Основной цвет для секций */
+    border-radius: 10px; /* Закругленные углы */
+}
+
+/* Контейнер для секции "Обо мне" */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.photo {
+    width: 200px;
+    height: auto;
+    border-radius: 10%; /* Закругленные углы */
+    margin-right: 20px;
+}
+
+.info {
+    max-width: 600px;
+}
+
+/* Стили для карусели */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px; /* Центрирование и ограничение ширины карусели */
+    margin: 0 auto; /* Центрирование карусели */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.carousel-button.left {
+    left: 10px;
+}
+
+.carousel-button.right {
+    right: 10px;
+}
+
+/* Стили для блока "Почему я" */
+.why-me {
+    max-width: 600px; /* Максимальная ширина блока */
+    margin: 30px auto; /* Увеличенное расстояние между блоками */
+    padding: 20px;
+    border: 5px solid rgba(255, 255, 255, 0.1); /* Едва заметная обводка */
+    text-align: center;
+    background-color: #282828; /* Новый цвет фона */
+    border-radius: 10px; /* Закругленные углы */
+}
+
+.why-me h2 {
+    text-align: center;
+    color: #eeeeee; /* Новый цвет заголовка */
+}
+
+.why-me-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Две колонки для текста */
+    gap: 20px; /* Отступы между колонками */
+    margin-top: 20px;
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0;
+}
+
+.why-me-item {
+    background-color: #282828; /* Новый цвет для пунктов */
+    padding: 15px;
+    border-radius: 10px; /* Закругленные углы для пунктов */
+    text-align: center;
+}
+
+/* Стили для контактов */
+#contact p {
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 900px) {
+    .section {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .why-me-list {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+}
+
+/* Дополнительные стили для кнопок карусели на маленьких экранах */
+@media (max-width: 600px) {
+    .carousel-button {
+        font-size: 28px;
+        padding: 12px;
+    }
+}
